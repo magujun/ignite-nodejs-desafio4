@@ -1,5 +1,7 @@
 import { User } from '../../model/User';
+import { v4 as uuidv4 } from 'uuid';
 import { IUsersRepository, ICreateUserDTO } from '../IUsersRepository';
+import { response } from 'express';
 
 class UsersRepository implements IUsersRepository {
 	private users: User[];
@@ -24,7 +26,6 @@ class UsersRepository implements IUsersRepository {
 		Object.assign(user, {
 			name,
 			email,
-			created_at: new Date(),
 		});
 
 		this.users.push(user);
@@ -42,7 +43,7 @@ class UsersRepository implements IUsersRepository {
 	}
 
 	turnAdmin(receivedUser: User): User {
-		const user = receivedUser;
+		const user = this.users.find((user) => receivedUser === user);
 		Object.assign(user, {
 			admin: true,
 			updated_at: new Date(),
