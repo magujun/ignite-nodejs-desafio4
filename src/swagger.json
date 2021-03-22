@@ -1,0 +1,75 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "ignite-nodejs-desafio4 Documentation",
+		"description": "This is an user registration API",
+		"version": "1.0.0",
+		"contact": {
+			"email": "developer@example.com"
+		}
+	},
+	"paths": {
+		"/categories": {
+			"post": {
+				"tags": ["User"],
+				"summary": "Create a new user",
+				"description": "This will create a new user",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"email": "string"
+								},
+								"example": {
+									"name": "User name",
+									"email": "user@example.com"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "User created"
+					},
+					"500": {
+						"description": "User already exists"
+					}
+				}
+			},
+			"get": {
+				"tags": ["User"],
+				"summary": "List all users",
+				"description": "This will list all users",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string"
+											},
+											"email": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

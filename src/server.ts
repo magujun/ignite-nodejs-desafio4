@@ -1,3 +1,7 @@
-import { app } from ".";
+import { app } from '.';
 
-app.listen(3333, () => console.log("Server is running!"));
+const PORT = 3333;
+
+app.get('/', (request, response) => response.json({ message: '⚡ Node server is running on port: ' + PORT + ' ⚡' }));
+
+app.listen(PORT, () => console.log('⚡Node server is running on port: ' + PORT + ' ⚡'));
