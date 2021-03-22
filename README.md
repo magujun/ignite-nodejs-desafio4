@@ -4,29 +4,29 @@
 
 Essa será uma aplicação de cadastro e listagem de usuários.  
 
-## Rotas da aplicação
+### Rotas da aplicação
 
-### POST `/users`
+#### POST `/users`
 
 A rota deve receber `name`, e `email` dentro do corpo da requisição para que seja possível cadastrar um usuário.
 
-### PATCH `/users/:user_id/admin`
+#### PATCH `/users/:user_id/admin`
 
 A rota deve receber, nos parâmetros da rota, o `id` de um usuário e transformar esse usuário em admin.
 
-### GET `/users/:user_id`
+#### GET `/users/:user_id`
 
 A rota deve receber, nos parâmetros da rota, o `id` de um usuário e devolver as informações do usuário encontrado pelo corpo da resposta.
 
-### GET `/users`
+#### GET `/users`
 
 A rota deve receber, pelo header da requisição, uma propriedade `user_id` contendo o `id` do usuário e retornar uma lista com todos os usuários cadastrados. O `id` deverá ser usado para validar se o usuário que está solicitando a listagem é um admin. O retorno da lista deve ser feito apenas se o usuário for admin.
 
 Para que a listagem de usuários funcione, o usuário que solicita a listagem deve ser um admin.
 
-## Testes
+### Testes
 
-### Teste do model
+#### Teste do model
 
 [ ] **Should be able to create an user with all props**
 
@@ -49,7 +49,7 @@ Para que a listagem de usuários funcione, o usuário que solicita a listagem de
 }
 ```
 
-### Testes do repositório
+#### Testes do repositório
 
 [ ] **Should be able to create new users**
 
@@ -71,7 +71,7 @@ Para que a listagem de usuários funcione, o usuário que solicita a listagem de
 
     Para que esse teste passe, é necessário que o método `turnAdmin` do arquivo **src/modules/users/repositories/implementations/UsersRepository** receba o objeto do usuário completo, mude a propriedade `admin` para `true`, atualize também a propriedade `updated_at`  e retorne o usuário atualizado.
 
-### Testes de useCases
+#### Testes de useCases
 
 [ ] **Should be able to create new users**
 
@@ -129,13 +129,16 @@ Para que a listagem de usuários funcione, o usuário que solicita a listagem de
     throw new Error("Mensagem do erro");
     ```
 
-### Testes das rotas
+#### Testes das rotas
 
 Para que esses testes passem, você deve fazer alterações em todos os controllers da aplicação. 
 
 Você pode olhar qual controller recebe o conteúdo de qual rota observando o arquivo **src/routes/users.routes.ts**.
 
 [ ] **Rota [ ] [POST] /users**
+
 [ ] **Rota [ ] [PATCH] /users/:user_id/admin**
+
 [ ] **Rota [ ] [GET] /users/:user_id**
+
 [ ] **Rota [ ] [GET] /users**
