@@ -8,6 +8,33 @@
 			"email": "developer@example.com"
 		}
 	},
+	"components": {
+		"schema": {
+			"user": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "$uuid"
+					},
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"admin": {
+						"type": "boolean"
+					},
+					"created_at": {
+						"type": "date"
+					},
+					"updated_at": {
+						"type": "date"
+					}
+				}
+			}
+		}
+	},
 	"paths": {
 		"/users": {
 			"post": {
@@ -28,7 +55,7 @@
 									}
 								},
 								"example": {
-									"name": "User name",
+									"name": "Username",
 									"email": "user@example.com"
 								}
 							}
@@ -37,46 +64,53 @@
 				},
 				"responses": {
 					"201": {
-						"description": "User created"
-					},
-					"400": {
-						"description": "User already exists"
-					}
-				}
-			},
-			"get": {
-				"tags": ["User"],
-				"summary": "List all users",
-				"description": "This will list all users",
-				"responses": {
-					"201": {
-						"description": "Success",
+						"description": "User created",
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "array",
-									"items": {
-										"type": "object",
-										"properties": {
-											"user_id": {
-												"type": "string"
-											},
-											"example": {
-												"user_id": ""
+									"$ref": "#/components/schema/user"
+								}
+							}
+						},
+						"400": {
+							"description": "User already exists!"
+						}
+					}
+				},
+				"get": {
+					"tags": ["User"],
+					"summary": "List all users",
+					"description": "This will list all users",
+					"responses": {
+						"201": {
+							"description": "Success",
+							"content": {
+								"application/json": {
+									"schema": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"user_id": {
+													"type": "string"
+												},
+												"example": {
+													"user_id": ""
+												}
 											}
 										}
 									}
 								}
 							}
+						},
+						"400": {
+							"description": "User does not exist!"
 						}
-					},
-					"400": {
-						"description": "User does not exist!"
 					}
 				}
 			}
 		},
-		"/:user_id": {
+		"/users/{user_id}": {
 			"get": {
 				"tags": ["User"],
 				"summary": "Show user profile",
@@ -109,7 +143,7 @@
 				}
 			}
 		},
-		"/:user_id/admin": {
+		"/users/{user_id/admin}": {
 			"patch": {
 				"tags": ["User"],
 				"summary": "Turn user admin",
