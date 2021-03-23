@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/magujun/ignite-nodejs-desafio4.svg?branch=main)](https://travis-ci.com/magujun/ignite-nodejs-desafio4)
+
 # 💻 Rocketseat's Ignite [ ] Trilha Node.js
 
 ## [Desafio 4](https://www.notion.so/Desafio-01-Introdu-o-ao-SOLID-3b9be286fac0482ca3b275473ddd2d72) 🚀
