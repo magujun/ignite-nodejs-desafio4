@@ -14,7 +14,8 @@
 				"type": "object",
 				"properties": {
 					"id": {
-						"type": "$uuid"
+						"type": "string",
+						"format": "uuid"
 					},
 					"name": {
 						"type": "string"
@@ -23,13 +24,16 @@
 						"type": "string"
 					},
 					"admin": {
-						"type": "boolean"
+						"type": "string",
+						"format": "boolean"
 					},
 					"created_at": {
-						"type": "date"
+						"type": "string",
+						"format": "date"
 					},
 					"updated_at": {
-						"type": "date"
+						"type": "string",
+						"format": "date"
 					}
 				}
 			}
@@ -76,36 +80,47 @@
 							"description": "User already exists!"
 						}
 					}
-				},
-				"get": {
-					"tags": ["User"],
-					"summary": "List all users",
-					"description": "This will list all users",
-					"responses": {
-						"201": {
-							"description": "Success",
-							"content": {
-								"application/json": {
-									"schema": {
-										"type": "array",
-										"items": {
-											"type": "object",
-											"properties": {
-												"user_id": {
-													"type": "string"
-												},
-												"example": {
-													"user_id": ""
-												}
+				}
+			},
+			"get": {
+				"tags": ["User"],
+				"summary": "List all users",
+				"description": "This will list all users",
+				"parameters": [
+					{
+						"in": "header",
+						"name": "user_id",
+						"schema": {
+							"type": "string",
+							"format": "uuid",
+							"required": true
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"user_id": {
+												"type": "string"
+											},
+											"example": {
+												"user_id": "$uuid"
 											}
 										}
 									}
 								}
 							}
-						},
-						"400": {
-							"description": "User does not exist!"
 						}
+					},
+					"400": {
+						"description": "User does not exist!"
 					}
 				}
 			}
