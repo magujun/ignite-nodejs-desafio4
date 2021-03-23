@@ -35,7 +35,22 @@
 						"type": "string",
 						"format": "date"
 					}
+				},
+				"example": {
+					"id": "db6cea7c-5bb0-4760-bf65-dc3e50299e1e",
+					"name": "Username",
+					"email": "user@example.com",
+					"admin": "false",
+					"created_at": "2021-03-23",
+					"updated_at": "2021-03-23"
 				}
+			},
+			"errors": {
+				"type": "object",
+				"properties": {
+					"error": "string"
+				},
+				"example": "User not found!"
 			}
 		}
 	},
@@ -75,9 +90,16 @@
 									"$ref": "#/components/schema/user"
 								}
 							}
-						},
-						"400": {
-							"description": "User already exists!"
+						}
+					},
+					"400": {
+						"description": "User already exists!",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schema/errors"
+								}
+							}
 						}
 					}
 				}
@@ -85,7 +107,7 @@
 			"get": {
 				"tags": ["User"],
 				"summary": "List all users",
-				"description": "This will list all users",
+				"description": "Only **admin** users allowed to list users",
 				"parameters": [
 					{
 						"in": "header",
@@ -98,29 +120,65 @@
 					}
 				],
 				"responses": {
-					"201": {
+					"200": {
 						"description": "Success",
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "array",
-									"items": {
-										"type": "object",
-										"properties": {
-											"user_id": {
-												"type": "string"
-											},
-											"example": {
-												"user_id": "$uuid"
-											}
-										}
-									}
+									"$ref": "#/components/schema/user"
 								}
 							}
 						}
 					},
 					"400": {
-						"description": "User does not exist!"
+						"description": "User does not exist!",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schema/errors"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/{user_id}/admin": {
+			"patch": {
+				"tags": ["User"],
+				"summary": "Turn user admin",
+				"description": "This will turn the user admin",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "user_id",
+						"schema": {
+							"type": "string",
+							"format": "uuid",
+							"required": true
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "User is now admin",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schema/user"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "User does not exist!",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schema/errors"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -153,40 +211,14 @@
 						}
 					},
 					"400": {
-						"description": "User does not exist!"
-					}
-				}
-			}
-		},
-		"/users/{user_id/admin}": {
-			"patch": {
-				"tags": ["User"],
-				"summary": "Turn user admin",
-				"description": "This will turn the user admin",
-				"responses": {
-					"200": {
-						"description": "Success",
+						"description": "User does not exist!",
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "array",
-									"items": {
-										"type": "object",
-										"properties": {
-											"name": {
-												"type": "string"
-											},
-											"email": {
-												"type": "string"
-											}
-										}
-									}
+									"$ref": "#/components/schema/errors"
 								}
 							}
 						}
-					},
-					"400": {
-						"description": "User does not exist!"
 					}
 				}
 			}
