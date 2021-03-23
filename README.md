@@ -2,8 +2,8 @@
 
 # 💻 Rocketseat's Ignite [ ] Trilha Node.js
 
-## [Desafio 4](https://www.notion.so/Desafio-01-Introdu-o-ao-SOLID-3b9be286fac0482ca3b275473ddd2d72)🚀
-[Documentação](https://www.notion.so/Desafio-02-Documentando-com-Swagger-8ce869ea608743e292851bd951f3239f#4d806221a6104db3a61eb681ea67edf0)🚀
+## [Desafio 4](https://www.notion.so/Desafio-01-Introdu-o-ao-SOLID-3b9be286fac0482ca3b275473ddd2d72) 🚀
+[Documentação](https://www.notion.so/Desafio-02-Documentando-com-Swagger-8ce869ea608743e292851bd951f3239f#4d806221a6104db3a61eb681ea67edf0) 📑
 
 Essa será uma aplicação de cadastro e listagem de usuários.  
 
