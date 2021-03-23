@@ -152,6 +152,7 @@
 					{
 						"in": "path",
 						"name": "user_id",
+						"description": "User ID",
 						"schema": {
 							"type": "string",
 							"format": "uuid",
@@ -188,29 +189,30 @@
 				"tags": ["User"],
 				"summary": "Show user profile",
 				"description": "This will show an user's profile",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "user_id",
+						"description": "User ID",
+						"schema": {
+							"type": "string",
+							"format": "uuid",
+							"required": true
+						}
+					}
+				],
 				"responses": {
 					"200": {
 						"description": "Success",
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "array",
-									"items": {
-										"type": "object",
-										"properties": {
-											"name": {
-												"type": "string"
-											},
-											"email": {
-												"type": "string"
-											}
-										}
-									}
+									"$ref": "#/components/schema/user"
 								}
 							}
 						}
 					},
-					"400": {
+					"404": {
 						"description": "User does not exist!",
 						"content": {
 							"application/json": {
