@@ -23,7 +23,9 @@
 									"name": {
 										"type": "string"
 									},
-									"email": "string"
+									"email": {
+										"type": "string"
+									}
 								},
 								"example": {
 									"name": "User name",
@@ -37,7 +39,7 @@
 					"201": {
 						"description": "User created"
 					},
-					"500": {
+					"400": {
 						"description": "User already exists"
 					}
 				}
@@ -46,6 +48,39 @@
 				"tags": ["User"],
 				"summary": "List all users",
 				"description": "This will list all users",
+				"responses": {
+					"201": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"user_id": {
+												"type": "string"
+											},
+											"example": {
+												"user_id": ""
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "User does not exist!"
+					}
+				}
+			}
+		},
+		"/:user_id": {
+			"get": {
+				"tags": ["User"],
+				"summary": "Show user profile",
+				"description": "This will show an user's profile",
 				"responses": {
 					"200": {
 						"description": "Success",
@@ -67,6 +102,42 @@
 								}
 							}
 						}
+					},
+					"400": {
+						"description": "User does not exist!"
+					}
+				}
+			}
+		},
+		"/:user_id/admin": {
+			"patch": {
+				"tags": ["User"],
+				"summary": "Turn user admin",
+				"description": "This will turn the user admin",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string"
+											},
+											"email": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "User does not exist!"
 					}
 				}
 			}
